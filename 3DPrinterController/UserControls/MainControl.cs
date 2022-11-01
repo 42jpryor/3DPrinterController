@@ -54,6 +54,14 @@ namespace _3DPrinterController.UserControls
         {
             if (serialPort.IsOpen)
             {
+                serialPort.WriteLine("G1 X" + txtX.Text + " Y" + txtY.Text + " Z" + txtZ.Text);
+            }
+        }
+
+        private void btnHome_Click(object sender, EventArgs e)
+        {
+            if (serialPort.IsOpen)
+            {
                 serialPort.WriteLine("G28");
             }
         }
