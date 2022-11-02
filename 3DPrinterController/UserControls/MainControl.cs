@@ -29,7 +29,6 @@ namespace _3DPrinterController.UserControls
             InitializeComponent();
             
             tableLayoutPanel1.Dock = DockStyle.Fill;
-
             btnClosePort.Enabled = false;
         }
 
