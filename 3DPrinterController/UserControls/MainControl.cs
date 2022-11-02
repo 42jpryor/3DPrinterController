@@ -172,5 +172,12 @@ namespace _3DPrinterController.UserControls
             }
         }
 
+        private void btnSetSpeed_Click(object sender, EventArgs e)
+        {
+            if (serialPort.IsOpen)
+            {
+                serialPort.WriteLine("M220 S" + txtSpeed.Text);
+            }
+        }
     }
 }
