@@ -108,7 +108,7 @@ namespace _3DPrinterController.UserControls
                         }
                         catch (Exception ex)
                         {
-                            MessageBox.Show(ex.Message);
+                            //MessageBox.Show(ex.Message, "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     }
                 }
