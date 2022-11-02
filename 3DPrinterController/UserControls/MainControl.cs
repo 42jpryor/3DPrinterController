@@ -14,15 +14,23 @@ namespace _3DPrinterController.UserControls
     public partial class MainControl : UserControl
     {
         SerialPort serialPort = new SerialPort();
+
+        // Background worker for receiving data over serial port
         private BackgroundWorker serialPortReceiver = new BackgroundWorker();
+        string receivedData = string.Empty;
+
         int printXMax = 350;
         int printYMax = 350;
         int printZMax = 400;
+
+
         public MainControl()
         {
             InitializeComponent();
             
             tableLayoutPanel1.Dock = DockStyle.Fill;
+
+            btnClosePort.Enabled = false;
         }
 
         private void MainControl_Load(object sender, EventArgs e)
@@ -42,6 +50,7 @@ namespace _3DPrinterController.UserControls
 
             // Start background worker
             serialPortReceiver.RunWorkerAsync();
+
         }
 
         private void serialPortReceiver_DoWork(object sender, DoWorkEventArgs e)
@@ -118,7 +127,8 @@ namespace _3DPrinterController.UserControls
             {
                 MessageBox.Show(ex.Message, "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
+        }
+        
         private void btnClosePort_Click(object sender, EventArgs e)
         {
             try
@@ -131,15 +141,6 @@ namespace _3DPrinterController.UserControls
             }
         }
 
-        }
-
-        private void btnMove_Click(object sender, EventArgs e)
-        {
-            if (serialPort.IsOpen)
-            {
-                serialPort.WriteLine("G1 X" + txtX.Text + " Y" + txtY.Text + " Z" + txtZ.Text);
-            }
-        }
 
         private void btnHome_Click(object sender, EventArgs e)
         {
@@ -148,5 +149,15 @@ namespace _3DPrinterController.UserControls
                 serialPort.WriteLine("G28");
             }
         }
+        
+        private void btnMove_Click(object sender, EventArgs e)
+        {
+            if (serialPort.IsOpen)
+            {
+                serialPort.WriteLine("G1 X" + txtX.Text + " Y" + txtY.Text + " Z" + txtZ.Text);
+            }
+        }
+
+
     }
 }
