@@ -15,6 +15,9 @@ namespace _3DPrinterController.UserControls
     {
         SerialPort serialPort = new SerialPort();
         private BackgroundWorker serialPortReceiver = new BackgroundWorker();
+        int printXMax = 350;
+        int printYMax = 350;
+        int printZMax = 400;
         public MainControl()
         {
             InitializeComponent();
