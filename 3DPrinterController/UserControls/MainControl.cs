@@ -123,7 +123,6 @@ namespace _3DPrinterController.UserControls
             try
             {
                 serialPort = new SerialPort(listBoxPorts.SelectedItem.ToString(), 115200, Parity.None, 8, StopBits.One);
-                //serialPort.PortName = listBoxPorts.Text;
                 serialPort.Open();
             }
             catch(Exception ex)
