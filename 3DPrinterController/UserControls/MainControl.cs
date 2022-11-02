@@ -112,10 +112,17 @@ namespace _3DPrinterController.UserControls
                 MessageBox.Show(ex.Message, "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
-            // Open serialport
-
-            //serialPort.Open();
-
+        private void btnClosePort_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                serialPort.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
 
         }
 
