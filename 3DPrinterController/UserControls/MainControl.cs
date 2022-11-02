@@ -164,6 +164,13 @@ namespace _3DPrinterController.UserControls
             }
         }
 
+        private void btnGetCurrentPosition_Click(object sender, EventArgs e)
+        {
+            if (serialPort.IsOpen)
+            {
+                serialPort.WriteLine("M114");
+            }
+        }
 
     }
 }
