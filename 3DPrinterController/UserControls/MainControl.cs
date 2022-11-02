@@ -117,6 +117,9 @@ namespace _3DPrinterController.UserControls
 
         private void btnOpenPort_Click(object sender, EventArgs e)
         {
+            btnOpenPort.Enabled = false;
+            btnClosePort.Enabled = true;
+
             try
             {
                 serialPort = new SerialPort(listBoxPorts.SelectedItem.ToString(), 115200, Parity.None, 8, StopBits.One);
@@ -131,6 +134,9 @@ namespace _3DPrinterController.UserControls
         
         private void btnClosePort_Click(object sender, EventArgs e)
         {
+            btnOpenPort.Enabled = true;
+            btnClosePort.Enabled = false;
+
             try
             {
                 serialPort.Close();
