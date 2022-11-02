@@ -28,6 +28,10 @@ namespace _3DPrinterController.UserControls
             string[] ports = System.IO.Ports.SerialPort.GetPortNames();
             listBoxPorts.Items.AddRange(ports);
 
+            txtX.Maximum = printXMax;
+            txtY.Maximum = printYMax;
+            txtZ.Maximum = printZMax;
+
             // Set up background worker
             serialPortReceiver.WorkerSupportsCancellation = true;
             serialPortReceiver.WorkerReportsProgress = true;
