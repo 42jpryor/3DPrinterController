@@ -29,7 +29,6 @@ namespace _3DPrinterController.UserControls
             InitializeComponent();
             
             tableLayoutPanel1.Dock = DockStyle.Fill;
-
             btnClosePort.Enabled = false;
         }
 
@@ -108,7 +107,7 @@ namespace _3DPrinterController.UserControls
                         }
                         catch (Exception ex)
                         {
-                            MessageBox.Show(ex.Message);
+                            //MessageBox.Show(ex.Message, "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     }
                 }
@@ -117,10 +116,12 @@ namespace _3DPrinterController.UserControls
 
         private void btnOpenPort_Click(object sender, EventArgs e)
         {
+            btnOpenPort.Enabled = false;
+            btnClosePort.Enabled = true;
+
             try
             {
                 serialPort = new SerialPort(listBoxPorts.SelectedItem.ToString(), 115200, Parity.None, 8, StopBits.One);
-                //serialPort.PortName = listBoxPorts.Text;
                 serialPort.Open();
             }
             catch(Exception ex)
@@ -131,6 +132,9 @@ namespace _3DPrinterController.UserControls
         
         private void btnClosePort_Click(object sender, EventArgs e)
         {
+            btnOpenPort.Enabled = true;
+            btnClosePort.Enabled = false;
+
             try
             {
                 serialPort.Close();
@@ -158,6 +162,20 @@ namespace _3DPrinterController.UserControls
             }
         }
 
+        private void btnGetCurrentPosition_Click(object sender, EventArgs e)
+        {
+            if (serialPort.IsOpen)
+            {
+                serialPort.WriteLine("M114");
+            }
+        }
 
+        private void btnSetSpeed_Click(object sender, EventArgs e)
+        {
+            if (serialPort.IsOpen)
+            {
+                serialPort.WriteLine("M220 S" + txtSpeed.Text);
+            }
+        }
     }
 }
