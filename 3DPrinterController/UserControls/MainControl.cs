@@ -177,5 +177,13 @@ namespace _3DPrinterController.UserControls
                 serialPort.WriteLine("M220 S" + txtSpeed.Text);
             }
         }
+
+        private void btnSendGCode_Click(object sender, EventArgs e)
+        {
+            if (serialPort.IsOpen)
+            {
+                serialPort.WriteLine(txtGCode.Text);
+            }
+        }
     }
 }

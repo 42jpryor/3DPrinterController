@@ -36,6 +36,8 @@
             this.btnOpenPort = new System.Windows.Forms.Button();
             this.listBoxPorts = new System.Windows.Forms.ListBox();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
+            this.txtSpeed = new System.Windows.Forms.NumericUpDown();
+            this.btnSetSpeed = new System.Windows.Forms.Button();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.txtZ = new System.Windows.Forms.NumericUpDown();
             this.label1 = new System.Windows.Forms.Label();
@@ -46,17 +48,19 @@
             this.btnHome = new System.Windows.Forms.Button();
             this.btnMove = new System.Windows.Forms.Button();
             this.btnGetCurrentPosition = new System.Windows.Forms.Button();
-            this.btnSetSpeed = new System.Windows.Forms.Button();
-            this.txtSpeed = new System.Windows.Forms.NumericUpDown();
+            this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
+            this.btnSendGCode = new System.Windows.Forms.Button();
+            this.txtGCode = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel5.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtSpeed)).BeginInit();
             this.tableLayoutPanel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtZ)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtX)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtY)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtSpeed)).BeginInit();
+            this.tableLayoutPanel6.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -64,6 +68,7 @@
             this.tableLayoutPanel1.ColumnCount = 2;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 40F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 60F));
+            this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel6, 1, 1);
             this.tableLayoutPanel1.Controls.Add(this.txtDataReceived, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel3, 0, 1);
@@ -182,6 +187,43 @@
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel3.Size = new System.Drawing.Size(205, 191);
             this.tableLayoutPanel3.TabIndex = 2;
+            // 
+            // txtSpeed
+            // 
+            this.txtSpeed.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtSpeed.Location = new System.Drawing.Point(3, 148);
+            this.txtSpeed.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.txtSpeed.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.txtSpeed.Name = "txtSpeed";
+            this.txtSpeed.Size = new System.Drawing.Size(96, 20);
+            this.txtSpeed.TabIndex = 1;
+            this.txtSpeed.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtSpeed.Value = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
+            // 
+            // btnSetSpeed
+            // 
+            this.btnSetSpeed.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSetSpeed.Location = new System.Drawing.Point(3, 66);
+            this.btnSetSpeed.Name = "btnSetSpeed";
+            this.btnSetSpeed.Size = new System.Drawing.Size(96, 57);
+            this.btnSetSpeed.TabIndex = 4;
+            this.btnSetSpeed.Text = "Set Speed %";
+            this.btnSetSpeed.UseVisualStyleBackColor = true;
+            this.btnSetSpeed.Click += new System.EventHandler(this.btnSetSpeed_Click);
             // 
             // tableLayoutPanel4
             // 
@@ -302,42 +344,43 @@
             this.btnGetCurrentPosition.UseVisualStyleBackColor = true;
             this.btnGetCurrentPosition.Click += new System.EventHandler(this.btnGetCurrentPosition_Click);
             // 
-            // btnSetSpeed
+            // tableLayoutPanel6
             // 
-            this.btnSetSpeed.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.tableLayoutPanel6.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSetSpeed.Location = new System.Drawing.Point(3, 66);
-            this.btnSetSpeed.Name = "btnSetSpeed";
-            this.btnSetSpeed.Size = new System.Drawing.Size(96, 57);
-            this.btnSetSpeed.TabIndex = 4;
-            this.btnSetSpeed.Text = "Set Speed %";
-            this.btnSetSpeed.UseVisualStyleBackColor = true;
-            this.btnSetSpeed.Click += new System.EventHandler(this.btnSetSpeed_Click);
+            this.tableLayoutPanel6.ColumnCount = 1;
+            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel6.Controls.Add(this.btnSendGCode, 0, 1);
+            this.tableLayoutPanel6.Controls.Add(this.txtGCode, 0, 0);
+            this.tableLayoutPanel6.Location = new System.Drawing.Point(214, 199);
+            this.tableLayoutPanel6.Name = "tableLayoutPanel6";
+            this.tableLayoutPanel6.RowCount = 2;
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel6.Size = new System.Drawing.Size(311, 191);
+            this.tableLayoutPanel6.TabIndex = 1;
             // 
-            // txtSpeed
+            // btnSendGCode
             // 
-            this.txtSpeed.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtSpeed.Location = new System.Drawing.Point(3, 148);
-            this.txtSpeed.Maximum = new decimal(new int[] {
-            1000,
-            0,
-            0,
-            0});
-            this.txtSpeed.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.txtSpeed.Name = "txtSpeed";
-            this.txtSpeed.Size = new System.Drawing.Size(96, 20);
-            this.txtSpeed.TabIndex = 1;
-            this.txtSpeed.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.txtSpeed.Value = new decimal(new int[] {
-            100,
-            0,
-            0,
-            0});
+            this.btnSendGCode.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSendGCode.Location = new System.Drawing.Point(3, 98);
+            this.btnSendGCode.Name = "btnSendGCode";
+            this.btnSendGCode.Size = new System.Drawing.Size(305, 90);
+            this.btnSendGCode.TabIndex = 2;
+            this.btnSendGCode.Text = "Send GCode";
+            this.btnSendGCode.UseVisualStyleBackColor = true;
+            this.btnSendGCode.Click += new System.EventHandler(this.btnSendGCode_Click);
+            // 
+            // txtGCode
+            // 
+            this.txtGCode.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtGCode.Location = new System.Drawing.Point(3, 37);
+            this.txtGCode.Name = "txtGCode";
+            this.txtGCode.Size = new System.Drawing.Size(305, 20);
+            this.txtGCode.TabIndex = 3;
             // 
             // MainControl
             // 
@@ -352,12 +395,14 @@
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel5.ResumeLayout(false);
             this.tableLayoutPanel3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.txtSpeed)).EndInit();
             this.tableLayoutPanel4.ResumeLayout(false);
             this.tableLayoutPanel4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtZ)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtX)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtY)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtSpeed)).EndInit();
+            this.tableLayoutPanel6.ResumeLayout(false);
+            this.tableLayoutPanel6.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -384,5 +429,8 @@
         private System.Windows.Forms.Button btnGetCurrentPosition;
         private System.Windows.Forms.NumericUpDown txtSpeed;
         private System.Windows.Forms.Button btnSetSpeed;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel6;
+        private System.Windows.Forms.Button btnSendGCode;
+        private System.Windows.Forms.TextBox txtGCode;
     }
 }
